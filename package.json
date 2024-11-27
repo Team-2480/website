@@ -1,0 +1,20 @@
+{
+  "name": "create-dreamland-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dreamland": "^0.0.24",
+    "vite-plugin-dreamland": "^1.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}

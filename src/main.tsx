@@ -1,10 +1,27 @@
-import { Button, Icon, NavList, Styles } from "m3-dreamland";
+import {
+    Button,
+    Icon,
+    NavList,
+    Styles,
+    Card,
+    CardClickable,
+} from "m3-dreamland";
 import iconHome from "@ktibow/iconset-material-symbols/home";
 import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
 import { dark, light } from "./style.tsx";
-import { CalendarObject } from "./calendar.tsx";
+import { IconifyIcon } from "@iconify/types";
 
-export const App: Component<{}, {}> = function () {
+export const App: Component<
+    {},
+    {
+        selector: number;
+        buttons: Array<{
+            icon: IconifyIcon;
+            name: string;
+        }>;
+        views: Array<HTMLElement>;
+    }
+> = function () {
     let content = css`
         padding: 1em;
     `;
@@ -13,21 +30,115 @@ export const App: Component<{}, {}> = function () {
         font-size: large;
         padding-left: 0.5em;
     `;
+
+    this.views = [<HomePage />, <GoogleCalander />];
+    this.buttons = [
+        {
+            icon: iconHome,
+            name: "Home",
+        },
+        {
+            icon: iconCalender,
+            name: "Calendar",
+        },
+    ];
+    this.selector = 0;
+
     return (
         <div>
-            <Styles dark={dark} light={light} />
+            <Styles dark={dark} light={dark} />
             <NavList type="bar">
-                <Button type="filled">
-                    <Icon icon={iconHome} /> <span class={header}>Home</span>
-                </Button>
-                <Button type="text">
-                    <Icon icon={iconCalender} />{" "}
-                    <span class={header}>Calender</span>
-                </Button>
+                {use(this.selector, () =>
+                    this.buttons.map((value, index) => {
+                        return (
+                            <Button
+                                type={
+                                    index == this.selector ? "filled" : "text"
+                                }
+                                on:click={() => {
+                                    this.selector = index;
+                                }}
+                            >
+                                <Icon icon={value.icon} />
+                                <span class={header}>{value.name}</span>
+                            </Button>
+                        );
+                    }),
+                )}
             </NavList>
             <div class={content}>
-                Hello! This is the placeholder site for FRC Team 2480.
+                {use(this.selector, () =>
+                    this.views.map((value, index) => {
+                        return (
+                            <span
+                                style={{
+                                    display:
+                                        index == this.selector
+                                            ? "inline"
+                                            : "none",
+                                }}
+                            >
+                                {value}
+                            </span>
+                        );
+                    }),
+                )}
             </div>
+        </div>
+    );
+};
+
+const HomePage: Component<{}, {}> = function () {
+    let header = css`
+        margin-bottom: 20px;
+        margin-top: 20px;
+        line-height: 1em;
+    `;
+    let sponsor = css`
+        filter: drop-shadow(0px 0px 2vw white) drop-shadow(0px 0px 2vw white);
+        border-radius: 10px;
+        width: 20vw;
+        aspect-ratio: 1;
+    `;
+    let sponsors = css`
+        display: flex;
+        [data-component="CardClickable"]{
+          margin: 10px;
+        }
+    `;
+    return (
+        <div class="outfit-regular">
+            <h1 class={header}>IronPaws - FRC Team 2480 </h1>
+            IronPaws is the FIRST Robotics team of Roosevelt High
+            and Hiawatha Collegiate High School.
+            <h2 class={header}>Our Sponsors</h2>
+            <div class={sponsors}>
+                <CardClickable type="filled">
+                    <img src="bslogo.svg" class={sponsor} />
+                </CardClickable>
+                <CardClickable type="filled">
+                    <img src="stcloud.svg" class={sponsor} />
+                </CardClickable>
+            </div>
+        </div>
+    );
+};
+const GoogleCalander: Component<{}, {}> = function () {
+    let container = css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+    return (
+        <div class={container}>
+            <iframe
+                src="https://calendar.google.com/calendar/embed?src=account%40team2480.org&ctz=America%2FChicago"
+                style="border: 0"
+                width="800"
+                height="600"
+                frameborder="0"
+                scrolling="no"
+            ></iframe>
         </div>
     );
 };

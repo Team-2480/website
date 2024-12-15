@@ -5,5 +5,5 @@ export const { light, dark } = genScheme(
     11 / 12,
 
   // INFO: you can ignore most of the settings here expect this one:
-    argbFromHex("#4fd63e"),
+    argbFromHex("#e28743"),
 );

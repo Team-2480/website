@@ -14,6 +14,9 @@ importers:
       '@fullcalendar/daygrid':
         specifier: ^6.1.15
         version: 6.1.15(@fullcalendar/core@6.1.15)
+      '@iconify/types':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@ktibow/iconset-material-symbols':
         specifier: ^0.0.1732258297
         version: 0.0.1732258297

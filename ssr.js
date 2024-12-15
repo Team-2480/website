@@ -53,6 +53,11 @@ export function renderToString(component, props, children) {
   globalThis.useChange = () => {};
   globalThis.window = new JSDOM().window;
   props["isRoot"] = true;
+  props["$ssr"] = (t) => {
+      if (typeof t == "function")
+        return t();
+      return t;
+  }
 
   let body = hSSR(component, props, children);
 

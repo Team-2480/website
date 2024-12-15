@@ -1,18 +1,11 @@
-import {
-    Button,
-    Icon,
-    NavList,
-    Styles,
-    Card,
-    CardClickable,
-} from "m3-dreamland";
+import { Button, Icon, NavList, Styles, CardClickable } from "m3-dreamland";
 import iconHome from "@ktibow/iconset-material-symbols/home";
 import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
-import { dark, light } from "./style.tsx";
+import { dark } from "./style.tsx";
 import { IconifyIcon } from "@iconify/types";
 
 export const App: Component<
-    {},
+    { $ssr: Function},
     {
         selector: number;
         buttons: Array<{
@@ -47,6 +40,23 @@ export const App: Component<
     return (
         <div>
             <Styles dark={dark} light={dark} />
+            {this.$ssr(() => {
+                let ret = <div></div>;
+                this.buttons.map((value, index) => {
+                    ret.appendChild(
+                        <Button
+                            type={index == this.selector ? "filled" : "text"}
+                            on:click={() => {
+                                this.selector = index;
+                            }}
+                        >
+                            <Icon icon={value.icon} />
+                            <span class={header}>{value.name}</span>
+                        </Button>,
+                    );
+                });
+                return ret;
+            })}
             <NavList type="bar">
                 {use(this.selector, () =>
                     this.buttons.map((value, index) => {
@@ -60,13 +70,18 @@ export const App: Component<
                                 }}
                             >
                                 <Icon icon={value.icon} />
-                                <span class={header}>{value.name}</span>
+                                <span class={header + " outfit-regular"}>{value.name}</span>
                             </Button>
                         );
                     }),
                 )}
             </NavList>
             <div class={content}>
+                {this.$ssr(() => {
+                    let ret = <div></div>;
+                    this.views.map((a) => ret.appendChild(a));
+                    return ret;
+                })}
                 {use(this.selector, () =>
                     this.views.map((value, index) => {
                         return (
@@ -102,15 +117,15 @@ const HomePage: Component<{}, {}> = function () {
     `;
     let sponsors = css`
         display: flex;
-        [data-component="CardClickable"]{
-          margin: 10px;
+        [data-component="CardClickable"] {
+            margin: 10px;
         }
     `;
     return (
         <div class="outfit-regular">
             <h1 class={header}>IronPaws - FRC Team 2480 </h1>
-            IronPaws is the FIRST Robotics team of Roosevelt High
-            and Hiawatha Collegiate High School.
+            IronPaws is the FIRST Robotics team of Roosevelt High and Hiawatha
+            Collegiate High School.
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>
                 <CardClickable type="filled">
@@ -133,7 +148,7 @@ const GoogleCalander: Component<{}, {}> = function () {
         <div class={container}>
             <iframe
                 src="https://calendar.google.com/calendar/embed?src=account%40team2480.org&ctz=America%2FChicago"
-                style="border: 0"
+                style="border: 0; border-radius: 10px;"
                 width="800"
                 height="600"
                 frameborder="0"

@@ -3,5 +3,5 @@ import "dreamland/dev";
 import "./index.css"
 
 window.addEventListener("load", () => {
-    document.getElementById("app")!.replaceWith(<App />);
+    document.getElementById("app")!.replaceWith(<App $ssr={() =>{}}/>);
 });

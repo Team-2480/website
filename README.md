@@ -1,6 +1,6 @@
 # Team 2480
 
-Our team website.
+A [dreamland.js](https://dreamland.js.org/) website for FRC Team 2480, with a **bespoke server side rendering solution** to be friendly to search engines.
 
 ## How to install
 

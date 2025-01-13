@@ -1,6 +1,7 @@
 import { Button, Icon, NavList, Styles, CardClickable } from "m3-dreamland";
 import iconHome from "@ktibow/iconset-material-symbols/home";
 import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
+import iconLinks from "@ktibow/iconset-material-symbols/link";
 import { dark } from "./style.tsx";
 import { IconifyIcon } from "@iconify/types";
 
@@ -24,7 +25,7 @@ export const App: Component<
         padding-left: 0.5em;
     `;
 
-    this.views = [<HomePage />, <GoogleCalander />];
+    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />];
     this.buttons = [
         {
             icon: iconHome,
@@ -33,6 +34,10 @@ export const App: Component<
         {
             icon: iconCalender,
             name: "Calendar",
+        },
+        {
+            icon: iconLinks,
+            name: "Important Links",
         },
     ];
     this.selector = 0;
@@ -154,6 +159,26 @@ const GoogleCalander: Component<{}, {}> = function () {
                 frameborder="0"
                 scrolling="no"
             ></iframe>
+        </div>
+    );
+};
+const ImportantLinks: Component<{}, {}> = function () {
+    let header = css`
+        margin-bottom: 20px;
+        margin-top: 20px;
+        line-height: 1em;
+    `;
+    let list = css`
+        margin-left:20px;
+    `;
+    return (
+        <div class="outfit-regular">
+            <h1 class={header}>Important Links</h1>
+            This may not be all of the important links, and can be updated in the future.
+                <ul class={list}>
+                    <li><a href='https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf' target='0'>Game Manuel</a></li>
+                    <li><a href='https://github.com/Team-2480' target='0'>Team 2480 Github</a></li>
+                </ul>
         </div>
     );
 };

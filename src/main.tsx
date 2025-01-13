@@ -177,7 +177,7 @@ const ImportantLinks: Component<{}, {}> = function () {
             <h1 class={header}>Important Links</h1>
             This may not be all of the important links, and can be updated in the future.
                 <ul class={list}>
-                    <li><a href='https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf' target='0'>Game Manuel</a></li>
+                    <li><a href='https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf' target='0'>Game Manual</a></li>
                     <li><a href='https://github.com/Team-2480' target='0'>Team 2480 Github</a></li>
                 </ul>
         </div>

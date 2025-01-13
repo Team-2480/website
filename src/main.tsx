@@ -122,7 +122,7 @@ const HomePage: Component<{}, {}> = function () {
     `;
     let sponsors = css`
         display: flex;
-        [data-component="CardClickable"] {
+        & > span {
             margin: 10px;
         }
     `;
@@ -158,6 +158,7 @@ const GoogleCalander: Component<{}, {}> = function () {
                 height="600"
                 frameborder="0"
                 scrolling="no"
+                loading="lazy"
             ></iframe>
         </div>
     );

@@ -152,7 +152,7 @@ const GoogleCalander: Component<{}, {}> = function () {
     return (
         <div class={container}>
             <iframe
-                src="https://calendar.google.com/calendar/embed?src=account%40team2480.org&ctz=America%2FChicago"
+                src="https://calendar.google.com/calendar/embed?src=account%40team2480.org&ctz=America%2FChicago&showTitle=0"
                 style="border: 0; border-radius: 10px;"
                 width="800"
                 height="600"

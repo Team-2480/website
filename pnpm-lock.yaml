@@ -26,6 +26,9 @@ importers:
       m3-dreamland:
         specifier: github:MercuryWorkshop/m3-dreamland
         version: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2
+      marked:
+        specifier: ^15.0.6
+        version: 15.0.6
       vite-plugin-dreamland:
         specifier: ^1.2.0
         version: 1.2.1
@@ -383,6 +386,11 @@ packages:
   m3-dreamland@https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2:
     resolution: {tarball: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2}
     version: 0.0.1
+
+  marked@15.0.6:
+    resolution: {integrity: sha512-Y07CUOE+HQXbVDCGl3LXggqJDbXDP2pArc2C1N1RRMN0ONiShoSsIInMd5Gsxupe7fKLpgimTV+HOJ9r7bA+pg==}
+    engines: {node: '>= 18'}
+    hasBin: true
 
   mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
@@ -816,6 +824,8 @@ snapshots:
       '@ktibow/iconset-material-symbols': 0.0.1731742403
       '@material/material-color-utilities': 0.3.0
       uuid: 11.0.3
+
+  marked@15.0.6: {}
 
   mime-db@1.52.0: {}
 

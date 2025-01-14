@@ -4,9 +4,11 @@ import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
 import iconLinks from "@ktibow/iconset-material-symbols/link";
 import { dark } from "./style.tsx";
 import { IconifyIcon } from "@iconify/types";
+import { marked } from 'marked';
+//https://marked.js.org/#usage
 
 export const App: Component<
-    { $ssr: Function},
+    { $ssr: Function },
     {
         selector: number;
         buttons: Array<{
@@ -126,11 +128,13 @@ const HomePage: Component<{}, {}> = function () {
             margin: 10px;
         }
     `;
+
     return (
         <div class="outfit-regular">
             <h1 class={header}>IronPaws - FRC Team 2480 </h1>
             IronPaws is the FIRST Robotics team of Roosevelt High and Hiawatha
             Collegiate High School.
+            <div id="content"></div>
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>
                 <CardClickable type="filled">
@@ -142,6 +146,7 @@ const HomePage: Component<{}, {}> = function () {
             </div>
         </div>
     );
+
 };
 const GoogleCalander: Component<{}, {}> = function () {
     let container = css`
@@ -172,14 +177,42 @@ const ImportantLinks: Component<{}, {}> = function () {
     let list = css`
         margin-left:20px;
     `;
+    // Placeholder div where parsed HTML will be inserted
+    let contentDiv = <div id="markdown-content"></div>;
+
+    // TODO: its possible to tell marked to add the classes we want in css
+    // see https://marked.js.org/using_pro#renderer 
+    // for now perhaps it would be easiest to customize css in the default classes
+    // idk if the css in each component is global so I haven't done that yet.
+
+    async function loadMarkdown() {
+        // const url = "https://raw.githubusercontent.com/beastr45/2480teamManual/refs/heads/main/README.md"
+
+        //TODO: update this to the team repo once I add the links file to the team github
+        const url = "https://raw.githubusercontent.com/beastr45/2480teamManual/refs/heads/main/Resources.md"
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+            let markdownText = await response.text();
+            let htmlContent = await marked.parse(markdownText);
+            const contentElement = document.getElementById("markdown-content")
+            console.log(htmlContent)
+            if (contentElement) {
+                contentElement.innerHTML = htmlContent; // Inject parsed HTML
+            }
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    // Call the loadMarkdown function to load content
+    loadMarkdown();
+
     return (
         <div class="outfit-regular">
-            <h1 class={header}>Important Links</h1>
-            This may not be all of the important links, and can be updated in the future.
-                <ul class={list}>
-                    <li><a href='https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf' target='0'>Game Manual</a></li>
-                    <li><a href='https://github.com/Team-2480' target='0'>Team 2480 Github</a></li>
-                </ul>
+            {contentDiv}
         </div>
     );
 };

@@ -132,8 +132,10 @@ const HomePage: Component<{}, {}> = function () {
     return (
         <div class="outfit-regular">
             <h1 class={header}>IronPaws - FRC Team 2480 </h1>
+            <h2 class={header}>About us</h2>
             IronPaws is the FIRST Robotics team of Roosevelt High and Hiawatha
             Collegiate High School.
+            Questions? contact the team at contact@team2480.org
             <div id="content"></div>
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>

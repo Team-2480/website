@@ -7,6 +7,28 @@ import { IconifyIcon } from "@iconify/types";
 import { marked } from 'marked';
 //https://marked.js.org/#usage
 
+//Util Functions
+async function loadMarkdown(url: string, htmlID: string) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        let markdownText = await response.text();
+        let htmlContent = await marked.parse(markdownText);
+        const contentElement = document.getElementById(htmlID)
+        if (contentElement) {
+            contentElement.innerHTML = htmlContent; // Inject parsed HTML
+        }
+
+    } catch (error) {
+        //FIX: typescript hates using error without error type, so no error code.
+        // console.error(error.message);
+        console.error("error retrieving file at", url);
+    }
+}
+
+// App
 export const App: Component<
     { $ssr: Function },
     {
@@ -171,47 +193,26 @@ const GoogleCalander: Component<{}, {}> = function () {
     );
 };
 const ImportantLinks: Component<{}, {}> = function () {
-    // TODO: its possible to tell marked to add the classes we want in css
+    // it also possible to tell marked to add the classes we want in css
     // see https://marked.js.org/using_pro#renderer 
-    // for now perhaps it would be easiest to customize css in the default classes
-    // idk if the css in each component is global so I haven't done that yet.
-    // currently commented out to avoid stupid build error.
-    //
-    // let header = css`
-    //     margin-bottom: 20px;
-    //     margin-top: 20px;
-    //     line-height: 1em;
-    // `;
-    // let list = css`
-    //     margin-left:20px;
-    // `;
-    // Placeholder div where parsed HTML will be inserted
-    let contentDiv = <div id="markdown-content">some content has failed to load ...oops</div>;
-
-
-    async function loadMarkdown() {
-        const url = "https://raw.githubusercontent.com/Team-2480/teamManual/refs/heads/main/Resources.md"
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
-            let markdownText = await response.text();
-            let htmlContent = await marked.parse(markdownText);
-            const contentElement = document.getElementById("markdown-content")
-            console.log(htmlContent)
-            if (contentElement) {
-                contentElement.innerHTML = htmlContent; // Inject parsed HTML
-            }
-
-        } catch (error) {
-            //FIX: typescript hates using error without error type, so no error code.
-            // console.error(error.message);
-            console.error("error retrieving file at", url);
+    // its easiest to customize css in the default classes, no fancy class names
+    // are needed
+    let contentStyle = css`
+        h1 {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            line-height: 1em;
         }
-    }
+        ul {
+            margin-left:20px;
+        }
+        `
+    // Placeholder div where parsed HTML will be inserted
+    const htmlID = "markdown-content"
+    let contentDiv = <div id={htmlID} class={contentStyle} >some content has failed to load ...oops</div>;
+    const url = "https://raw.githubusercontent.com/Team-2480/teamManual/refs/heads/main/Resources.md"
     // Call the loadMarkdown function to load content
-    loadMarkdown();
+    loadMarkdown(url, htmlID);
 
     return (
         <div class="outfit-regular">

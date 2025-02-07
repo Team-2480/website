@@ -139,9 +139,9 @@ const HomePage: Component<{}, {}> = function () {
         line-height: 1em;
     `;
     let sponsor = css`
-        filter: drop-shadow(0px 0px 2vw white) drop-shadow(0px 0px 2vw white);
+        filter: drop-shadow(3px 0px 0.4vw white) drop-shadow(-3px 0px 0.4vw white) drop-shadow(0px 3px 0.4vw white) drop-shadow(0px -3px 0.4vw white);
         border-radius: 10px;
-        width: 20vw;
+        width: 10vw;
         aspect-ratio: 1;
     `;
     let sponsors = css`
@@ -166,6 +166,9 @@ const HomePage: Component<{}, {}> = function () {
                 </CardClickable>
                 <CardClickable type="filled">
                     <img src="stcloud.svg" class={sponsor} />
+                </CardClickable>
+                <CardClickable type="filled">
+                    <img src="MRRF_Logo.jpg" class={sponsor} />
                 </CardClickable>
             </div>
         </div>

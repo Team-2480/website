@@ -36,6 +36,7 @@ export const App: Component<
         buttons: Array<{
             icon: IconifyIcon;
             name: string;
+            route: string;
         }>;
         views: Array<HTMLElement>;
     }
@@ -54,17 +55,45 @@ export const App: Component<
         {
             icon: iconHome,
             name: "Home",
+            route: "#home",
         },
         {
             icon: iconCalender,
             name: "Calendar",
+            route: "#calendar",
         },
         {
             icon: iconLinks,
             name: "Important Links",
+            route: "#links",
         },
     ];
     this.selector = 0;
+
+    // Function to handle routing and change the selected view based on the URL hash
+    const updateRoute = () => {
+        const hash = window.location.hash;
+        switch (hash) {
+            case "#home":
+                this.selector = 0;
+                break;
+            case "#calendar":
+                this.selector = 1;
+                break;
+            case "#links":
+                this.selector = 2;
+                break;
+            default:
+                this.selector = 0;
+                break;
+        }
+    };
+
+    // Initialize the route based on the current URL
+    updateRoute();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", updateRoute);
 
     return (
         <div>
@@ -76,7 +105,8 @@ export const App: Component<
                         <Button
                             type={index == this.selector ? "filled" : "text"}
                             on:click={() => {
-                                this.selector = index;
+                                this.selector = index; //idk if this is still needed
+                                window.location.hash = value.route; // Change hash on click
                             }}
                         >
                             <Icon icon={value.icon} />
@@ -95,7 +125,8 @@ export const App: Component<
                                     index == this.selector ? "filled" : "text"
                                 }
                                 on:click={() => {
-                                    this.selector = index;
+                                    // this.selector = index; //idk if this is still needed
+                                    window.location.hash = value.route; // Change hash on click
                                 }}
                             >
                                 <Icon icon={value.icon} />

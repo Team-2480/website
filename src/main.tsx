@@ -122,7 +122,7 @@ export const App: Component<
                         return (
                             <Button
                                 type={
-                                    index == this.selector ? "filled" : "text"
+                                    index == this.selector ? "filled" : "outlined"
                                 }
                                 on:click={() => {
                                     // this.selector = index; //idk if this is still needed
@@ -211,6 +211,7 @@ const GoogleCalander: Component<{}, {}> = function () {
         display: flex;
         justify-content: center;
         align-items: center;
+        filter:saturate(0%) invert(100%) contrast(100%);
     `;
     return (
         <div class={container}>
@@ -239,6 +240,9 @@ const ImportantLinks: Component<{}, {}> = function () {
         }
         ul {
             margin-left:20px;
+        }
+        a {
+        color: #6b75ff
         }
         `
     // Placeholder div where parsed HTML will be inserted

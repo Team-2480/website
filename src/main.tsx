@@ -50,7 +50,7 @@ export const App: Component<
         padding-left: 0.5em;
     `;
 
-    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />];
+    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />,<Files/>];
     this.buttons = [
         {
             icon: iconHome,
@@ -67,6 +67,11 @@ export const App: Component<
             name: "Important Links",
             route: "#links",
         },
+        {
+            icon: iconLinks,
+            name: "Files!",
+            route: "#files",
+        }
     ];
     this.selector = 0;
 
@@ -82,6 +87,9 @@ export const App: Component<
                 break;
             case "#links":
                 this.selector = 2;
+                break;
+            case "#files":
+                this.selector = 3;
                 break;
             default:
                 this.selector = 0;
@@ -257,4 +265,24 @@ const ImportantLinks: Component<{}, {}> = function () {
             {contentDiv}
         </div>
     );
+};
+const Files: Component<{}, {}> = function () {
+    let header = css`
+        margin-bottom: 20px;
+        margin-top: 20px;
+        line-height: 1em;
+    `;
+    let list = css`
+            margin-left:20px;
+  `;
+
+    return (
+        <div class="outfit-regular">
+            <h1 class={header}>IronPaws Files!</h1>
+            <ul class={list}>
+              <li>Balisong/Buterfly Bedscrapers STL <a href="/Main-Production.stl">download here!</a></li>
+            </ul>
+        </div>
+    );
+
 };

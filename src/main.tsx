@@ -183,6 +183,11 @@ const HomePage: Component<{}, {}> = function () {
         width: 10vw;
         aspect-ratio: 1;
     `;
+
+    let teamPhoto = css`
+        border-radius: 10px;
+        width: 40vw;
+    `;
     let sponsors = css`
         display: flex;
         & > span {
@@ -193,10 +198,18 @@ const HomePage: Component<{}, {}> = function () {
     return (
         <div class="outfit-regular">
             <h1 class={header}>IronPaws - FRC Team 2480 </h1>
-            <h2 class={header}>About us</h2>
-            IronPaws is the FIRST Robotics team of Roosevelt High and Hiawatha
-            Collegiate High School.
-            Questions? contact the team at contact@team2480.org
+            <img src="teamPhoto2025.jpg" class={teamPhoto} />
+            <h2 class={header}>About Us</h2>
+            Iron Paws is a FIRST Robotics team from the metro area that represents high schoolers from Roosevelt and Hiawatha Collegiate High. Our team members strive to form a positive and tightly knit community of future engineers and trailblazers who are masters in their crafts. An Ironpaw follows the school's motto, “Enter to learn, leave to serve.” Our team members work towards serving the community and generating excellence.
+
+            <h2 class={header}>Our Mission</h2>
+            Iron Paws and the Roosevelt Robotics foundation serve the explicit mission of bringing STEM experiences to underrepresented youth in public schools. The guiding principle of Iron Paws is to bring STEM opportunities to all people regardless of class or prior experience. From these goals we’ve been able to train and nurture skills in our members that no other accessible opportunities provide.
+
+            <h2 class={header}>Social Media</h2>
+            Youtube: <a href="https://www.youtube.com/@FRC-2480">youtube.com/@FRC-2480</a><br/>
+            Github: <a href="https://github.com/Team-2480">github.com/Team-2480</a><br/>
+
+            Questions? contact the team at contact@team2480.org<br/>
             <div id="content"></div>
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>

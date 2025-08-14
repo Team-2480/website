@@ -190,6 +190,7 @@ const HomePage: Component<{}, {}> = function () {
     `;
     let sponsors = css`
         display: flex;
+        align-items: center;
         & > span {
             margin: 10px;
         }
@@ -222,6 +223,10 @@ const HomePage: Component<{}, {}> = function () {
                 <CardClickable type="filled">
                     <img src="MRRF_Logo.jpg" class={sponsor} />
                 </CardClickable>
+                <CardClickable type="filled" on:click={() => {window.open("https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J")}}>
+                  <h4 style={{"color": "white", "text-decoration": "underline"}}>Donate to the foundation!</h4>
+                </CardClickable>
+
             </div>
         </div>
     );

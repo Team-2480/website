@@ -2,6 +2,7 @@ import { Button, Icon, NavList, Styles, CardClickable } from "m3-dreamland";
 import iconHome from "@ktibow/iconset-material-symbols/home";
 import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
 import iconLinks from "@ktibow/iconset-material-symbols/link";
+import iconFiles from "@ktibow/iconset-material-symbols/inventory-2";
 import { dark } from "./style.tsx";
 import { IconifyIcon } from "@iconify/types";
 import { marked } from 'marked';
@@ -50,7 +51,7 @@ export const App: Component<
         padding-left: 0.5em;
     `;
 
-    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />,<Files/>];
+    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />, <Files />];
     this.buttons = [
         {
             icon: iconHome,
@@ -68,7 +69,7 @@ export const App: Component<
             route: "#links",
         },
         {
-            icon: iconLinks,
+            icon: iconFiles,
             name: "Files!",
             route: "#files",
         }
@@ -187,6 +188,8 @@ const HomePage: Component<{}, {}> = function () {
     let teamPhoto = css`
         border-radius: 10px;
         width: 40vw;
+        height: auto;
+        object-fit: cover;
     `;
     let sponsors = css`
         display: flex;
@@ -198,19 +201,23 @@ const HomePage: Component<{}, {}> = function () {
 
     return (
         <div class="outfit-regular">
-            <h1 class={header}>IronPaws - FRC Team 2480 </h1>
-            <img src="teamPhoto2025.jpg" class={teamPhoto} />
-            <h2 class={header}>About Us</h2>
-            Iron Paws is a FIRST Robotics team from the metro area that represents high schoolers from Roosevelt and Hiawatha Collegiate High. Our team members strive to form a positive and tightly knit community of future engineers and trailblazers who are masters in their crafts. An Ironpaw follows the school's motto, “Enter to learn, leave to serve.” Our team members work towards serving the community and generating excellence.
+            <h1 class={header} on:click={() => { window.open("favicon.svg") }}>IronPaws - FRC Team 2480 </h1>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+                <img src="teamPhoto2025.jpg" class={teamPhoto} />
+                <div style={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}>
+                    <h2 class={header}>About Us</h2>
+                    Iron Paws is a FIRST Robotics team from the metro area that represents high schoolers from Roosevelt and Hiawatha Collegiate High. Our team members strive to form a positive and tightly knit community of future engineers and trailblazers who are masters in their crafts. An Ironpaw follows the school's motto, “Enter to learn, leave to serve.” Our team members work towards serving the community and generating excellence.
 
-            <h2 class={header}>Our Mission</h2>
-            Iron Paws and the Roosevelt Robotics foundation serve the explicit mission of bringing STEM experiences to underrepresented youth in public schools. The guiding principle of Iron Paws is to bring STEM opportunities to all people regardless of class or prior experience. From these goals we’ve been able to train and nurture skills in our members that no other accessible opportunities provide.
+                    <h2 class={header}>Our Mission</h2>
+                    Iron Paws and the Roosevelt Robotics foundation serve the explicit mission of bringing STEM experiences to underrepresented youth in public schools. The guiding principle of Iron Paws is to bring STEM opportunities to all people regardless of class or prior experience. From these goals we’ve been able to train and nurture skills in our members that no other accessible opportunities provide.
+                    
+                    <h2 class={header}>Social Media</h2>
+                    Youtube: <a href="https://www.youtube.com/@FRC-2480">youtube.com/@FRC-2480</a><br />
+                    Github: <a href="https://github.com/Team-2480">github.com/Team-2480</a><br />
 
-            <h2 class={header}>Social Media</h2>
-            Youtube: <a href="https://www.youtube.com/@FRC-2480">youtube.com/@FRC-2480</a><br/>
-            Github: <a href="https://github.com/Team-2480">github.com/Team-2480</a><br/>
-
-            Questions? contact the team at contact@team2480.org<br/>
+                </div>
+            </div>
+            Questions? contact the team at contact@team2480.org<br />
             <div id="content"></div>
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>
@@ -223,8 +230,8 @@ const HomePage: Component<{}, {}> = function () {
                 <CardClickable type="filled">
                     <img src="MRRF_Logo.jpg" class={sponsor} />
                 </CardClickable>
-                <CardClickable type="filled" on:click={() => {window.open("https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J")}}>
-                  <h4 style={{"color": "white", "text-decoration": "underline"}}>Donate to the foundation!</h4>
+                <CardClickable type="filled" on:click={() => { window.open("https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J") }}>
+                    <h4 style={{ "color": "white", "text-decoration": "underline" }}>Donate to the foundation!</h4>
                 </CardClickable>
 
             </div>
@@ -298,7 +305,7 @@ const Files: Component<{}, {}> = function () {
         <div class="outfit-regular">
             <h1 class={header}>IronPaws Files!</h1>
             <ul class={list}>
-              <li>Balisong/Buterfly Bedscrapers STL <a href="/Main-Production.stl">download here!</a></li>
+                <li>Balisong/Buterfly Bedscrapers STL <a href="/Main-Production.stl">download here!</a></li>
             </ul>
         </div>
     );

@@ -110,7 +110,7 @@ favicon.addEventListener("click", (e) => {
     document.getElementById("clickCount").innerHTML = "Clicks: " + counterNum
 });
 
-function gameFrame() {//basically deltatime but for javascript lol
+function gameFrame() {
     favicon.style.filter = "hue-rotate(" + hue + "deg)"
     hue += 2
     if (hue >= 360) {

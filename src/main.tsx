@@ -5,7 +5,7 @@ import iconLinks from "@ktibow/iconset-material-symbols/link";
 import iconFiles from "@ktibow/iconset-material-symbols/inventory-2";
 import { dark } from "./style.tsx";
 import { IconifyIcon } from "@iconify/types";
-import { marked } from 'marked';
+import { marked } from "marked";
 //https://marked.js.org/#usage
 
 //Util Functions
@@ -17,11 +17,10 @@ async function loadMarkdown(url: string, htmlID: string) {
         }
         let markdownText = await response.text();
         let htmlContent = await marked.parse(markdownText);
-        const contentElement = document.getElementById(htmlID)
+        const contentElement = document.getElementById(htmlID);
         if (contentElement) {
             contentElement.innerHTML = htmlContent; // Inject parsed HTML
         }
-
     } catch (error) {
         //FIX: typescript hates using error without error type, so no error code.
         // console.error(error.message);
@@ -50,8 +49,33 @@ export const App: Component<
         font-size: large;
         padding-left: 0.5em;
     `;
+    this.css = `
+        @media (max-width: 1000px)  {
+          .${header}{
+              visibility: hidden !important;
+          }
 
-    this.views = [<HomePage />, <GoogleCalander />, <ImportantLinks />, <Files />];
+          button {
+              width: 15vw !important;
+          }
+
+          button > svg {
+            position: absolute;
+            transform: translate(-50%, -50%) scale(150%);
+            left: 50%;
+            top: 50%;
+          }
+
+
+        }
+    `;
+
+    this.views = [
+        <HomePage />,
+        <GoogleCalander />,
+        <ImportantLinks />,
+        <Files />,
+    ];
     this.buttons = [
         {
             icon: iconHome,
@@ -72,7 +96,7 @@ export const App: Component<
             icon: iconFiles,
             name: "Files!",
             route: "#files",
-        }
+        },
     ];
     this.selector = 0;
 
@@ -131,7 +155,9 @@ export const App: Component<
                         return (
                             <Button
                                 type={
-                                    index == this.selector ? "filled" : "outlined"
+                                    index == this.selector
+                                        ? "filled"
+                                        : "outlined"
                                 }
                                 on:click={() => {
                                     // this.selector = index; //idk if this is still needed
@@ -139,7 +165,9 @@ export const App: Component<
                                 }}
                             >
                                 <Icon icon={value.icon} />
-                                <span class={header + " outfit-regular"}>{value.name}</span>
+                                <span class={header + " outfit-regular"}>
+                                    {value.name}
+                                </span>
                             </Button>
                         );
                     }),
@@ -179,7 +207,9 @@ const HomePage: Component<{}, {}> = function () {
         line-height: 1em;
     `;
     let sponsor = css`
-        filter: drop-shadow(3px 0px 0.4vw white) drop-shadow(-3px 0px 0.4vw white) drop-shadow(0px 3px 0.4vw white) drop-shadow(0px -3px 0.4vw white);
+        filter: drop-shadow(3px 0px 0.4vw white)
+            drop-shadow(-3px 0px 0.4vw white) drop-shadow(0px 3px 0.4vw white)
+            drop-shadow(0px -3px 0.4vw white);
         border-radius: 10px;
         width: 10vw;
         aspect-ratio: 1;
@@ -199,25 +229,77 @@ const HomePage: Component<{}, {}> = function () {
         }
     `;
 
+    let homeDiv = css`
+        display: flex;
+        flex-direction: row;
+    `;
+
+    this.css = `
+        @media (max-width: 1000px)  {
+          .${homeDiv} {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .${teamPhoto} {
+            width: 60vw;
+          }
+        }
+    `;
+
     return (
         <div class="outfit-regular">
-            <h1 class={header} on:click={() => { window.open("favicon.svg") }}>IronPaws - FRC Team 2480 </h1>
-            <div id="homeDiv"> {/* style={{ display: "flex", flexDirection: "row" }} */}
-                <img src="teamPhoto2025.jpg" id="teamPhoto" class={teamPhoto} />
-                <div style={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}>
+            <h1
+                class={header}
+                on:click={() => {
+                    window.open("favicon.svg");
+                }}
+            >
+                IronPaws - FRC Team 2480{" "}
+            </h1>
+            <div class={homeDiv}>
+                {" "}
+                {/* style={{ display: "flex", flexDirection: "row" }} */}
+                <img src="teamPhoto2025.jpg" class={teamPhoto} />
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: "20px",
+                    }}
+                >
                     <h2 class={header}>About Us</h2>
-                    Iron Paws is a FIRST Robotics team from the metro area that represents high schoolers from Roosevelt and Hiawatha Collegiate High. Our team members strive to form a positive and tightly knit community of future engineers and trailblazers who are masters in their crafts. An Ironpaw follows the school's motto, “Enter to learn, leave to serve.” Our team members work towards serving the community and generating excellence.
-
+                    Iron Paws is a FIRST Robotics team from the metro area that
+                    represents high schoolers from Roosevelt and Hiawatha
+                    Collegiate High. Our team members strive to form a positive
+                    and tightly knit community of future engineers and
+                    trailblazers who are masters in their crafts. An Ironpaw
+                    follows the school's motto, “Enter to learn, leave to
+                    serve.” Our team members work towards serving the community
+                    and generating excellence.
                     <h2 class={header}>Our Mission</h2>
-                    Iron Paws and the Roosevelt Robotics foundation serve the explicit mission of bringing STEM experiences to underrepresented youth in public schools. The guiding principle of Iron Paws is to bring STEM opportunities to all people regardless of class or prior experience. From these goals we’ve been able to train and nurture skills in our members that no other accessible opportunities provide.
-
+                    Iron Paws and the Roosevelt Robotics foundation serve the
+                    explicit mission of bringing STEM experiences to
+                    underrepresented youth in public schools. The guiding
+                    principle of Iron Paws is to bring STEM opportunities to all
+                    people regardless of class or prior experience. From these
+                    goals we’ve been able to train and nurture skills in our
+                    members that no other accessible opportunities provide.
                     <h2 class={header}>Social Media</h2>
-                    Youtube: <a href="https://www.youtube.com/@FRC-2480">youtube.com/@FRC-2480</a><br />
-                    Github: <a href="https://github.com/Team-2480">github.com/Team-2480</a><br />
-
+                    Youtube:{" "}
+                    <a href="https://www.youtube.com/@FRC-2480">
+                        youtube.com/@FRC-2480
+                    </a>
+                    <br />
+                    Github:{" "}
+                    <a href="https://github.com/Team-2480">
+                        github.com/Team-2480
+                    </a>
+                    <br />
+                    Questions? contact the team at contact@team2480.org
                 </div>
             </div>
-            Questions? contact the team at contact@team2480.org<br />
+            <br />
             <div id="content"></div>
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>
@@ -230,21 +312,33 @@ const HomePage: Component<{}, {}> = function () {
                 <CardClickable type="filled">
                     <img src="MRRF_Logo.jpg" class={sponsor} />
                 </CardClickable>
-                <CardClickable type="filled" on:click={() => { window.open("https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J") }}>
-                    <h4 style={{ "color": "white", "text-decoration": "underline" }}>Donate to the foundation!</h4>
+                <CardClickable
+                    type="filled"
+                    on:click={() => {
+                        window.open(
+                            "https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J",
+                        );
+                    }}
+                >
+                    <h4
+                        style={{
+                            color: "white",
+                            "text-decoration": "underline",
+                        }}
+                    >
+                        Donate to the foundation!
+                    </h4>
                 </CardClickable>
-
             </div>
         </div>
     );
-
 };
 const GoogleCalander: Component<{}, {}> = function () {
     let container = css`
         display: flex;
         justify-content: center;
         align-items: center;
-        filter:saturate(0%) invert(100%) contrast(100%);
+        filter: saturate(0%) invert(100%) contrast(100%);
     `;
     return (
         <div class={container}>
@@ -262,7 +356,7 @@ const GoogleCalander: Component<{}, {}> = function () {
 };
 const ImportantLinks: Component<{}, {}> = function () {
     // it also possible to tell marked to add the classes we want in css
-    // see https://marked.js.org/using_pro#renderer 
+    // see https://marked.js.org/using_pro#renderer
     // its easiest to customize css in the default classes, no fancy class names
     // are needed
     let contentStyle = css`
@@ -272,24 +366,25 @@ const ImportantLinks: Component<{}, {}> = function () {
             line-height: 1em;
         }
         ul {
-            margin-left:20px;
+            margin-left: 20px;
         }
         a {
-        color: #6b75ff
+            color: #6b75ff;
         }
-        `
+    `;
     // Placeholder div where parsed HTML will be inserted
-    const htmlID = "markdown-content"
-    let contentDiv = <div id={htmlID} class={contentStyle} >some content has failed to load ...oops</div>;
-    const url = "https://raw.githubusercontent.com/Team-2480/teamManual/refs/heads/main/Resources.md"
+    const htmlID = "markdown-content";
+    let contentDiv = (
+        <div id={htmlID} class={contentStyle}>
+            some content has failed to load ...oops
+        </div>
+    );
+    const url =
+        "https://raw.githubusercontent.com/Team-2480/teamManual/refs/heads/main/Resources.md";
     // Call the loadMarkdown function to load content
     loadMarkdown(url, htmlID);
 
-    return (
-        <div class="outfit-regular">
-            {contentDiv}
-        </div>
-    );
+    return <div class="outfit-regular">{contentDiv}</div>;
 };
 const Files: Component<{}, {}> = function () {
     let header = css`
@@ -298,16 +393,18 @@ const Files: Component<{}, {}> = function () {
         line-height: 1em;
     `;
     let list = css`
-            margin-left:20px;
-  `;
+        margin-left: 20px;
+    `;
 
     return (
         <div class="outfit-regular">
             <h1 class={header}>IronPaws Files!</h1>
             <ul class={list}>
-                <li>Balisong/Buterfly Bedscrapers STL <a href="/Main-Production.stl">download here!</a></li>
+                <li>
+                    Balisong/Buterfly Bedscrapers STL{" "}
+                    <a href="/Main-Production.stl">download here!</a>
+                </li>
             </ul>
         </div>
     );
-
 };

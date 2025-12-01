@@ -207,12 +207,13 @@ const HomePage: Component<{}, {}> = function () {
         line-height: 1em;
     `;
     let sponsor = css`
-        filter: drop-shadow(3px 0px 0.4vw white)
+        /* filter: drop-shadow(3px 0px 0.4vw white)
             drop-shadow(-3px 0px 0.4vw white) drop-shadow(0px 3px 0.4vw white)
-            drop-shadow(0px -3px 0.4vw white);
+            drop-shadow(0px -3px 0.4vw white); */
         border-radius: 10px;
         width: 10vw;
         aspect-ratio: 1;
+        object-fit: contain;
     `;
 
     let teamPhoto = css`
@@ -304,10 +305,16 @@ const HomePage: Component<{}, {}> = function () {
             <h2 class={header}>Our Sponsors</h2>
             <div class={sponsors}>
                 <CardClickable type="filled">
-                    <img src="bslogo.svg" class={sponsor} />
+                    <img src="bslogo.png" class={sponsor} />
                 </CardClickable>
                 <CardClickable type="filled">
-                    <img src="stcloud.svg" class={sponsor} />
+                    <img src="haas.png" class={sponsor} />
+                </CardClickable>
+                <CardClickable type="filled">
+                    <img src="Barr.png" class={sponsor} />
+                </CardClickable>
+                <CardClickable type="filled">
+                    <img src="JohnDeere.png" class={sponsor} />
                 </CardClickable>
                 <CardClickable type="filled">
                     <img src="MRRF_Logo.jpg" class={sponsor} />

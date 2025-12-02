@@ -237,6 +237,14 @@ const HomePage: Component<{}, {}> = function () {
 
     this.css = `
         @media (max-width: 1000px)  {
+          .${sponsors} {
+            flex-direction: column;
+          }
+          .${sponsor} {
+            width: 80vw;
+            aspect-ratio: 1;
+          }
+
           .${homeDiv} {
             flex-direction: column;
             align-items: center;

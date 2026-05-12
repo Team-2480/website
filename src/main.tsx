@@ -1,6 +1,6 @@
 import { Button, Icon, NavList, Styles, CardClickable } from "m3-dreamland";
 import iconHome from "@ktibow/iconset-material-symbols/home";
-import iconCalender from "@ktibow/iconset-material-symbols/calendar-today";
+import iconRobot from "@ktibow/iconset-material-symbols/smart-toy";
 import iconLinks from "@ktibow/iconset-material-symbols/link";
 import iconFiles from "@ktibow/iconset-material-symbols/inventory-2";
 import { dark } from "./style.tsx";
@@ -72,7 +72,7 @@ export const App: Component<
 
     this.views = [
         <HomePage />,
-        <GoogleCalander />,
+        <BagelSim />,
         <ImportantLinks />,
         <Files />,
     ];
@@ -83,9 +83,9 @@ export const App: Component<
             route: "#home",
         },
         {
-            icon: iconCalender,
-            name: "Calendar",
-            route: "#calendar",
+            icon: iconRobot,
+            name: "Bagel Sim",
+            route: "#bagelsim",
         },
         {
             icon: iconLinks,
@@ -107,7 +107,7 @@ export const App: Component<
             case "#home":
                 this.selector = 0;
                 break;
-            case "#calendar":
+            case "#bagelsim":
                 this.selector = 1;
                 break;
             case "#links":
@@ -269,7 +269,7 @@ const HomePage: Component<{}, {}> = function () {
             <div class={homeDiv}>
                 {" "}
                 {/* style={{ display: "flex", flexDirection: "row" }} */}
-                <img src="teamPhoto2025.jpg" class={teamPhoto} />
+                <img src="teamPhoto2026.jpg" class={teamPhoto} />
                 <div
                     style={{
                         display: "flex",
@@ -348,26 +348,61 @@ const HomePage: Component<{}, {}> = function () {
         </div>
     );
 };
-const GoogleCalander: Component<{}, {}> = function () {
-    let container = css`
+const BagelSim: Component<{}, {}> = function () {
+    let header = css`
+        margin-bottom: 20px;
+        margin-top: 20px;
+        line-height: 1em;
+    `;
+    let bagelPhoto = css`
+        border-radius: 10px;
+        width: 40vw;
+        height: auto;
+        object-fit: cover;
+    `;
+
+    let homeDiv = css`
         display: flex;
-        justify-content: center;
-        align-items: center;
-        filter: saturate(0%) invert(100%) contrast(100%);
+        flex-direction: row;
+    `;
+
+    this.css = `
+        @media (max-width: 1000px)  {
+          .${homeDiv} {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .${bagelPhoto} {
+            width: 60vw;
+          }
+        }
     `;
     return (
-        <div class={container}>
-            <iframe
-                src="https://calendar.google.com/calendar/embed?src=team20480%40gmail.com&ctz=America%2FChicago&showTitle=0"
-                style="border: 0; border-radius: 10px;"
-                width="800"
-                height="600"
-                frameborder="0"
-                scrolling="no"
-                loading="lazy"
-            ></iframe>
+        <div class="outfit-regular">
+            <h1
+                class={header}
+            >
+                Bagel Simulator <a href="https://team2480.org/simulator/">(Click here to play!)</a>
+            </h1>
+            <div class={homeDiv}>
+                {" "}
+                {/* style={{ display: "flex", flexDirection: "row" }} */}
+                <img src="bagelPhoto.png" class={bagelPhoto} />
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: "20px",
+                    }}
+                >
+                    <h2 class={header}>What is BagelSim?</h2>
+                    bottom text
+                </div>
+            </div>
         </div>
-    );
+    )
+
 };
 const ImportantLinks: Component<{}, {}> = function () {
     // it also possible to tell marked to add the classes we want in css
@@ -416,7 +451,7 @@ const Files: Component<{}, {}> = function () {
             <h1 class={header}>IronPaws Files!</h1>
             <ul class={list}>
                 <li>
-                    Balisong/Buterfly Bedscrapers STL{" "}
+                    Balisong/Butterfly Bedscrapers STL{" "}
                     <a href="/Main-Production.stl">download here!</a>
                 </li>
             </ul>

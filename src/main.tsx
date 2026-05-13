@@ -9,22 +9,27 @@ import { marked } from "marked";
 //https://marked.js.org/#usage
 
 //Util Functions
-async function loadMarkdown(url: string, htmlID: string) {
+async function loadMarkdown(url: string, htmlID: string, $ssr: Function) {
+    let markdownText = "";
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-        let markdownText = await response.text();
-        let htmlContent = await marked.parse(markdownText);
-        const contentElement = document.getElementById(htmlID);
-        if (contentElement) {
-            contentElement.innerHTML = htmlContent; // Inject parsed HTML
-        }
+        markdownText = await response.text();
     } catch (error) {
         //FIX: typescript hates using error without error type, so no error code.
         // console.error(error.message);
-        console.error("error retrieving file at", url);
+        console.log("error retrieving file at", url);
+    }
+    let htmlContent = await marked.parse(markdownText);
+
+    if(!$ssr(() => true)){
+        const contentElement = document.getElementById(htmlID);
+
+        if (contentElement) {
+            contentElement.innerHTML = htmlContent; // Inject parsed HTML
+        }
     }
 }
 
@@ -70,12 +75,7 @@ export const App: Component<
         }
     `;
 
-    this.views = [
-        <HomePage />,
-        <BagelSim />,
-        <ImportantLinks />,
-        <Files />,
-    ];
+    this.views = [<HomePage />, <BagelSim />, <ImportantLinks $ssr={this.$ssr}/>, <Files />];
     this.buttons = [
         {
             icon: iconHome,
@@ -380,10 +380,11 @@ const BagelSim: Component<{}, {}> = function () {
     `;
     return (
         <div class="outfit-regular">
-            <h1
-                class={header}
-            >
-                Bagel Simulator <a href="https://team2480.org/simulator/">(Click here to play!)</a>
+            <h1 class={header}>
+                Bagel Simulator{" "}
+                <a href="https://team2480.org/simulator/">
+                    (Click here to play!)
+                </a>
             </h1>
             <div class={homeDiv}>
                 {" "}
@@ -401,10 +402,9 @@ const BagelSim: Component<{}, {}> = function () {
                 </div>
             </div>
         </div>
-    )
-
+    );
 };
-const ImportantLinks: Component<{}, {}> = function () {
+const ImportantLinks: Component<{$ssr: Function}, {}> = function () {
     // it also possible to tell marked to add the classes we want in css
     // see https://marked.js.org/using_pro#renderer
     // its easiest to customize css in the default classes, no fancy class names
@@ -432,7 +432,7 @@ const ImportantLinks: Component<{}, {}> = function () {
     const url =
         "https://raw.githubusercontent.com/Team-2480/teamManual/refs/heads/main/Resources.md";
     // Call the loadMarkdown function to load content
-    loadMarkdown(url, htmlID);
+    loadMarkdown(url, htmlID, this.$ssr);
 
     return <div class="outfit-regular">{contentDiv}</div>;
 };

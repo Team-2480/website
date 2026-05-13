@@ -25,7 +25,7 @@ importers:
         version: 0.0.24
       m3-dreamland:
         specifier: github:MercuryWorkshop/m3-dreamland
-        version: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2
+        version: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/896a195bbc4f80a8768f9e09c4c9156ce9b2f99f
       marked:
         specifier: ^15.0.6
         version: 15.0.6
@@ -240,46 +240,55 @@ packages:
     resolution: {integrity: sha512-9OwUnK/xKw6DyRlgx8UizeqRFOfi9mf5TYCw1uolDaJSbUmBxP85DE6T4ouCMoN6pXw8ZoTeZCSEfSaYo+/s1w==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.27.4':
     resolution: {integrity: sha512-Vgdo4fpuphS9V24WOV+KwkCVJ72u7idTgQaBoLRD0UxBAWTF9GWurJO9YD9yh00BzbkhpeXtm6na+MvJU7Z73A==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.27.4':
     resolution: {integrity: sha512-pleyNgyd1kkBkw2kOqlBx+0atfIIkkExOTiifoODo6qKDSpnc6WzUY5RhHdmTdIJXBdSnh6JknnYTtmQyobrVg==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.27.4':
     resolution: {integrity: sha512-caluiUXvUuVyCHr5DxL8ohaaFFzPGmgmMvwmqAITMpV/Q+tPoaHZ/PWa3t8B2WyoRcIIuu1hkaW5KkeTDNSnMA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.27.4':
     resolution: {integrity: sha512-FScrpHrO60hARyHh7s1zHE97u0KlT/RECzCKAdmI+LEoC1eDh/RDji9JgFqyO+wPDb86Oa/sXkily1+oi4FzJQ==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.27.4':
     resolution: {integrity: sha512-qyyprhyGb7+RBfMPeww9FlHwKkCXdKHeGgSqmIXw9VSUtvyFZ6WZRtnxgbuz76FK7LyoN8t/eINRbPUcvXB5fw==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.27.4':
     resolution: {integrity: sha512-PFz+y2kb6tbh7m3A7nA9++eInGcDVZUACulf/KzDtovvdTizHpZaJty7Gp0lFwSQcrnebHOqxF1MaKZd7psVRg==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.27.4':
     resolution: {integrity: sha512-Ni8mMtfo+o/G7DVtweXXV/Ol2TFf63KYjTtoZ5f078AUgJTmaIJnj4JFU7TK/9SVWTaSJGxPi5zMDgK4w+Ez7Q==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.27.4':
     resolution: {integrity: sha512-5AeeAF1PB9TUzD+3cROzFTnAJAcVUGLuR8ng0E0WXGkYhp6RD6L+6szYVX+64Rs0r72019KHZS1ka1q+zU/wUw==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.27.4':
     resolution: {integrity: sha512-yOpVsA4K5qVwu2CaS3hHxluWIK5HQTjNV4tWjQXluMiiiu4pJj4BN98CvxohNCpcjMeTXk/ZMJBRbgRg8HBB6A==}
@@ -383,8 +392,8 @@ packages:
       canvas:
         optional: true
 
-  m3-dreamland@https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2:
-    resolution: {tarball: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2}
+  m3-dreamland@https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/896a195bbc4f80a8768f9e09c4c9156ce9b2f99f:
+    resolution: {tarball: https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/896a195bbc4f80a8768f9e09c4c9156ce9b2f99f}
     version: 0.0.1
 
   marked@15.0.6:
@@ -475,8 +484,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  uuid@11.0.3:
-    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+  uuid@11.1.1:
+    resolution: {integrity: sha512-vIYxrBCC/N/K+Js3qSN88go7kIfNPssr/hHCesKCQNAjmgvYS2oqr69kIufEG+O4+PfezOH4EbIeHCfFov8ZgQ==}
     hasBin: true
 
   vite-plugin-dreamland@1.2.1:
@@ -819,11 +828,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  m3-dreamland@https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/8976b36b8f0b04532262b2f94bd9a9018cb719a2:
+  m3-dreamland@https://codeload.github.com/MercuryWorkshop/m3-dreamland/tar.gz/896a195bbc4f80a8768f9e09c4c9156ce9b2f99f:
     dependencies:
       '@ktibow/iconset-material-symbols': 0.0.1731742403
       '@material/material-color-utilities': 0.3.0
-      uuid: 11.0.3
+      uuid: 11.1.1
 
   marked@15.0.6: {}
 
@@ -909,7 +918,7 @@ snapshots:
 
   typescript@5.7.2: {}
 
-  uuid@11.0.3: {}
+  uuid@11.1.1: {}
 
   vite-plugin-dreamland@1.2.1: {}
 

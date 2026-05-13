@@ -24,7 +24,7 @@ async function loadMarkdown(url: string, htmlID: string, $ssr: Function) {
     }
     let htmlContent = await marked.parse(markdownText);
 
-    if(!$ssr(() => true)){
+    if (!$ssr(() => true)) {
         const contentElement = document.getElementById(htmlID);
 
         if (contentElement) {
@@ -75,7 +75,12 @@ export const App: Component<
         }
     `;
 
-    this.views = [<HomePage />, <BagelSim />, <ImportantLinks $ssr={this.$ssr}/>, <Files />];
+    this.views = [
+        <HomePage />,
+        <BagelSim />,
+        <ImportantLinks $ssr={this.$ssr} />,
+        <Files />,
+    ];
     this.buttons = [
         {
             icon: iconHome,
@@ -229,6 +234,19 @@ const HomePage: Component<{}, {}> = function () {
             margin: 10px;
         }
     `;
+    let sizzlephotos = css`
+        display: grid;
+        grid-template-columns: auto auto auto;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        img {
+            width: 30vw;
+            object-fit: cover;
+        }
+    `;
+    let robotphoto = css`
+        width: 70vw;
+    `;
 
     let homeDiv = css`
         display: flex;
@@ -239,9 +257,12 @@ const HomePage: Component<{}, {}> = function () {
         @media (max-width: 1000px)  {
           .${sponsors} {
             flex-direction: column;
+
+            display: grid;
+            grid-template-columns: auto auto;
           }
           .${sponsor} {
-            width: 80vw;
+            width: 25vw;
             aspect-ratio: 1;
           }
 
@@ -269,7 +290,14 @@ const HomePage: Component<{}, {}> = function () {
             <div class={homeDiv}>
                 {" "}
                 {/* style={{ display: "flex", flexDirection: "row" }} */}
-                <img src="teamPhoto2026.jpg" class={teamPhoto} />
+                <img
+                    src="teamPhoto2026.jpg"
+                    class={teamPhoto}
+                    style={{ cursor: "pointer" }}
+                    on:click={() => {
+                        window.open("teamPhoto2026.jpg");
+                    }}
+                />
                 <div
                     style={{
                         display: "flex",
@@ -345,6 +373,12 @@ const HomePage: Component<{}, {}> = function () {
                     </h4>
                 </CardClickable>
             </div>
+            <img src="2026photo4.jpg" class={robotphoto} />
+            <div class={sizzlephotos}>
+                <img src="2026photo1.jpg" />
+                <img src="2026photo2.jpg" />
+                <img src="2026photo3.jpg" />
+            </div>
         </div>
     );
 };
@@ -404,7 +438,7 @@ const BagelSim: Component<{}, {}> = function () {
         </div>
     );
 };
-const ImportantLinks: Component<{$ssr: Function}, {}> = function () {
+const ImportantLinks: Component<{ $ssr: Function }, {}> = function () {
     // it also possible to tell marked to add the classes we want in css
     // see https://marked.js.org/using_pro#renderer
     // its easiest to customize css in the default classes, no fancy class names

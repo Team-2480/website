@@ -438,7 +438,7 @@ const BagelSim: Component<{}, {}> = function () {
                         you're at. It's built to be engaging and fun, make
                         people want to improve their driving skills. It's very
                         lightweight, running on pretty much every device with a
-                        web browser, phones included! Included in that is very
+                        web browser, phones included! Being lightweight means very
                         low resource requirements. It's all written in C++ from
                         scratch to avoid as much lag as we can.
                     </div>

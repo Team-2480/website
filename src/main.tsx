@@ -433,31 +433,34 @@ const BagelSim: Component<{}, {}> = function () {
                 >
                     <h2 class={header}>What is BagelSim?</h2>
                     <div>
-                        BagelSim is our driver simulator. It's full open source
+                        BagelSim is our driver simulator. It's fully open source
                         where anyone can contribute, no matter what skill level
                         you're at. It's built to be engaging and fun, make
                         people want to improve their driving skills. It's very
                         lightweight, running on pretty much every device with a
-                        web browser, phones included! Being lightweight means very
-                        low resource requirements. It's all written in C++ from
-                        scratch to avoid as much lag as we can.
+                        web browser, phones included! Being lightweight means
+                        very low resource requirements. It's all written in C++
+                        from scratch to avoid the bloat of a traditional game
+                        engine.
                     </div>
                     <br />
                     <div>
-                        If you're interested in helping out our Github is{" "}
+                        If you're interested in helping out we have a Github.
+                        Again we take contributions from all skill levels, be
+                        that issues or your first pull request!
+                        <br />
                         <a href="https://github.com/Team-2480/BagelSim">
                             https://github.com/Team-2480/BagelSim
                         </a>{" "}
-                        again we take contributions from all skill levels, be
-                        that issues or your first pull request!
                     </div>
                     <br />
                     <div>
                         If you would like to give thanks and support development
-                        please dontate here: {" "}
+                        please dontate. We're a small team so every bit helps!
+                        <br />
                         <a href="https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J">
                             https://www.paypal.com/donate?hosted_button_id=HQUMDHSWMTB7J
-                        </a> {" "} We're a small team so every bit helps!
+                        </a>{" "}
                     </div>
                 </div>
             </div>
